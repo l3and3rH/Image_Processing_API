@@ -1,0 +1,28 @@
+{
+  "name": "first_server",
+  "version": "1.0.0",
+  "description": "This is my first udacity project where I will build a small server with express to automatically rezise an image via an api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/l3and3rH/Image_Processing_API.git"
+  },
+  "keywords": [
+    "Image",
+    "Image",
+    "processing",
+    "simple",
+    "Express",
+    "server",
+    "node"
+  ],
+  "author": "Leander Haidacher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/l3and3rH/Image_Processing_API/issues"
+  },
+  "homepage": "https://github.com/l3and3rH/Image_Processing_API#readme"
+}
