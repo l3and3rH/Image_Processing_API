@@ -4,7 +4,11 @@
   "description": "This is my first udacity project where I will build a small server with express to automatically rezise an image via an api",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "esl": "eslint .",
+    "prt": "prettier --write .",
+    "build": "npx tsc",
+    "jasmine": "jasmine",
+    "test": "npm run build && npm run jasmine"
   },
   "repository": {
     "type": "git",
