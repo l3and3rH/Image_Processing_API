@@ -1,56 +1,58 @@
 {
-  "name": "first_server",
-  "version": "1.0.0",
-  "description": "This is my first udacity project where I will build a small server with express to automatically rezise an image via an api",
-  "main": "index.js",
-  "scripts": {
-    "esl": "eslint .",
-    "prt": "prettier --write .",
-    "build": "npx tsc",
-    "jasmine": "jasmine",
-    "test": "npm run build && npm run jasmine",
-    "start": "ts-node ./src/index.ts",
-    "start:nodemon": "./node_modules/nodemon/bin/nodemon.js",
-    "testfile": "nodemon --exec \"ts-node ./src/index.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/l3and3rH/Image_Processing_API.git"
-  },
-  "keywords": [
-    "Image",
-    "Image",
-    "processing",
-    "simple",
-    "Express",
-    "server",
-    "node"
-  ],
-  "author": "Leander Haidacher",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/l3and3rH/Image_Processing_API/issues"
-  },
-  "homepage": "https://github.com/l3and3rH/Image_Processing_API#readme",
-  "dependencies": {
-    "@types/node": "^17.0.7",
-    "@types/supertest": "^2.0.11",
-    "express": "^4.17.2",
-    "jasmine": "^4.0.0",
-    "jasmine-spec-reporter": "^7.0.0",
-    "sharp": "^0.29.3",
-    "ts-node": "^10.4.0"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/jasmine": "^3.10.3",
-    "@types/sharp": "^0.29.5",
-    "eslint": "^8.6.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "nodemon": "^2.0.15",
-    "prettier": "^2.5.1",
-    "supertest": "^6.1.6",
-    "typescript": "^4.5.4"
-  }
+    "name": "first_server",
+    "version": "1.0.0",
+    "description": "This is my first udacity project where I will build a small server with express to automatically rezise an image via an api",
+    "main": "index.js",
+    "scripts": {
+        "esl": "eslint src/** ",
+        "prt": "prettier --write .",
+        "build": "npx tsc",
+        "jasmine": "jasmine",
+        "test": "npm run build && npm run jasmine",
+        "start": "node ./dist/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/l3and3rH/Image_Processing_API.git"
+    },
+    "keywords": [
+        "Image",
+        "Image",
+        "processing",
+        "simple",
+        "Express",
+        "server",
+        "node"
+    ],
+    "author": "Leander Haidacher",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/l3and3rH/Image_Processing_API/issues"
+    },
+    "homepage": "https://github.com/l3and3rH/Image_Processing_API#readme",
+    "dependencies": {
+        "@types/node": "^17.0.7",
+        "@types/supertest": "^2.0.11",
+        "express": "^4.17.2",
+        "jasmine": "^4.0.0",
+        "jasmine-spec-reporter": "^7.0.0",
+        "request": "^2.88.2",
+        "sharp": "^0.29.3",
+        "ts-node": "^10.4.0"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.13",
+        "@types/jasmine": "^3.10.3",
+        "@types/request": "^2.48.8",
+        "@types/sharp": "^0.29.5",
+        "@typescript-eslint/eslint-plugin": "^5.9.1",
+        "@typescript-eslint/parser": "^5.9.1",
+        "eslint": "^8.7.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "nodemon": "^2.0.15",
+        "prettier": "^2.5.1",
+        "supertest": "^6.2.2",
+        "typescript": "^4.5.4"
+    }
 }
