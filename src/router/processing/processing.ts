@@ -11,8 +11,12 @@ processing.get('/:fileName', validateInput, (req: express.Request, res: express.
     try {
         const height = parseInt(req.query.height + '')
         const width = parseInt(req.query.width + '')
-        const fileName = req.params.fileName
-
+        let fileName: string;
+        if(req.params.fileName.includes('.jpg')){
+            fileName = req.params.fileName;  
+        } else {
+            fileName = req.params.fileName + '.jpg'
+        } 
         const imageCheck = async (): Promise<void> => {
             //check if there is a file ind the /full folder that could be resized
             try {
