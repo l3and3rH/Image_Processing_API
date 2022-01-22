@@ -9,7 +9,7 @@ app.use('/image', router)
 app.use(validateInput)
 
 app.listen(port, () => {
-    console.log(`Up and running`)
+    console.log(`Up and running on localhost:3000`)
 })
 
 export default app

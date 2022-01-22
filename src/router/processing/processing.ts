@@ -4,7 +4,6 @@ import { constants } from 'fs'
 import resizeImage from '../../helpers/processingHelper'
 import { checkFormat } from '../../helpers/processingHelper'
 
-
 const processing = express.Router()
 
 processing.get('/:fileName', (req, res): void => {
@@ -12,9 +11,10 @@ processing.get('/:fileName', (req, res): void => {
         const height = parseInt(req.query.height + '')
         const width = parseInt(req.query.width + '')
         const fileName = req.params.fileName + '.jpg'
-       
+
         console.log(height, width, fileName)
-        
+        console.log('validation')
+
         const imageCheck = async (): Promise<void> => {
             //check if there is a file ind the /full folder that could be resized
             try {

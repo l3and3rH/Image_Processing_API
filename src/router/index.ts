@@ -1,5 +1,5 @@
 import express from 'express'
-import processing from './processing/processing';
+import processing from './processing/processing'
 import validateInput from '../middleware/inputValidation'
 
 const router = express.Router()
