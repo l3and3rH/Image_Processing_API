@@ -1,7 +1,10 @@
 import sharp from 'sharp'
 
-const resizeImage = async (input: string, height: number, width: number) => {
-  console.log(input)
+const resizeImage = async (
+    input: string,
+    height: number,
+    width: number
+): Promise<unknown> => {
     try {
         const file = await sharp('./src/assets/full/' + input)
             .resize({
@@ -24,12 +27,6 @@ export const checkFormat = async (
     width: number
 ): Promise<boolean> => {
     const metadata = await sharp('./src/assets/rezised/' + input).metadata()
-    console.log('checkFormat wurde aufgerufen mit')
-    console.log(
-        'resizescheck: ' +
-            (metadata.height !== height || metadata.width !== width)
-    )
-
     return metadata.height !== height || metadata.width !== width
 }
 

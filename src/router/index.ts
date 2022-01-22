@@ -1,9 +1,10 @@
 import express from 'express'
-import processing from './processing/processing'
+import processing from './processing/processing';
+import validateInput from '../middleware/inputValidation'
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
+router.get('/', (req, res): void => {
     const targetUrl =
         req.originalUrl + '/processing/FILENAME?height=200&width=300'
     res.send(
@@ -11,6 +12,6 @@ router.get('/', (req, res) => {
     )
 })
 
-router.use('/processing', processing)
+router.use('/processing', validateInput, processing)
 
 export default router
