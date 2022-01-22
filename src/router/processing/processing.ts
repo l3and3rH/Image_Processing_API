@@ -3,10 +3,11 @@ import * as fs from 'fs/promises'
 import { constants } from 'fs'
 import resizeImage from '../../helpers/processingHelper'
 import { checkFormat } from '../../helpers/processingHelper'
+import validateInput from '../../middleware/inputValidation'
 
 const processing = express.Router()
 
-processing.get('/:fileName', (req, res): void => {
+processing.get('/:fileName', validateInput, (req: express.Request, res: express.Response): void => {
     try {
         const height = parseInt(req.query.height + '')
         const width = parseInt(req.query.width + '')
