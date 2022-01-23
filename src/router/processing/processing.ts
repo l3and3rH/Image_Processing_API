@@ -2,26 +2,32 @@ import express from 'express'
 import * as fs from 'fs/promises'
 import { constants } from 'fs'
 import resizeImage from '../../helpers/processingHelper'
-import { checkFormat } from '../../helpers/processingHelper'
-import validateInput from '../../middleware/inputValidation'
+import validateInput from '../../middleware/inputValidation' 
+import path from 'path'
 
 const processing = express.Router()
 
 processing.get('/:fileName', validateInput, (req: express.Request, res: express.Response): void => {
+    console.log(req.params.fileName.includes('.jpg'))
+
     try {
         const height = parseInt(req.query.height + '')
         const width = parseInt(req.query.width + '')
         let fileName: string;
         if(req.params.fileName.includes('.jpg')){
-            fileName = req.params.fileName;  
+            fileName = req.params.fileName;
+            fileName = fileName.slice(0, fileName.length - 4)
+            console.log('da warn .jpg dran' + fileName)
         } else {
-            fileName = req.params.fileName + '.jpg'
+            fileName = req.params.fileName 
+            console.log('solle kein .jpg enthalten   ' + fileName)
         } 
         const imageCheck = async (): Promise<void> => {
             //check if there is a file ind the /full folder that could be resized
+            const assetsPath = path.join(__dirname + '..', '..', '..', '..', 'assets' )
             try {
                 await fs.access(
-                    './src/assets/rezised/' + fileName,
+                    path.join(assetsPath, 'full' ,fileName + '.jpg'),
                     constants.R_OK
                 )
             } catch (error) {
@@ -33,25 +39,16 @@ processing.get('/:fileName', validateInput, (req: express.Request, res: express.
 
             // check if file is already resized
             try {
+                console.log('look here')
+                console.log(path.join(assetsPath, 'rezised' ,fileName + '_' + height + 'x' + width + '.jpg'))
                 const check = await fs.access(
-                    './src/assets/rezised/' + fileName,
+                    path.join(assetsPath, 'rezised' ,fileName + '_' + height + 'x' + width + '.jpg'),
                     constants.R_OK
                 )
                 if (check === undefined) {
-                    // check if format is as different - if true resizees it
-                    if (await checkFormat(fileName, height, width)) {
-                        const rz = await resizeImage(fileName, height, width)
-                        if (rz instanceof Error) {
-                            res.status(500).send('Could not process the file')
-                        }
-                    }
                     // sends correct file to client
                     res.status(200).sendFile(
-                        '/src/assets/rezised/' + fileName,
-                        {
-                            root: '.',
-                        }
-                    )
+                        path.join(assetsPath, 'rezised' ,fileName + '_' + height + 'x' + width + '.jpg'))
                     return
                 }
 
@@ -63,9 +60,7 @@ processing.get('/:fileName', validateInput, (req: express.Request, res: express.
                     res.status(500).send('Could not process the file')
                 }
                 // respond with resized image
-                res.status(200).sendFile('/src/assets/rezised/' + fileName, {
-                    root: '.',
-                })
+                res.status(200).sendFile(path.join(assetsPath, 'rezised' ,fileName + '_' + height + 'x' + width + '.jpg'))
                 return
             }
         }

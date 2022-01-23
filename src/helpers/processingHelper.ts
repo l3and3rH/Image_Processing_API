@@ -1,4 +1,5 @@
-import sharp from 'sharp'
+import sharp from 'sharp';
+import path from 'path';
 
 const resizeImage = async (
     input: string,
@@ -6,28 +7,22 @@ const resizeImage = async (
     width: number
 ): Promise<unknown> => {
     try {
-        const file = await sharp('./src/assets/full/' + input)
+        const assetsPath = path.join(__dirname , '..', '..', 'assets' )
+        console.log('look here now    ' + input)
+        console.log(path.join(assetsPath, 'full' , input))
+        const file = await sharp(path.join(assetsPath, 'full' , input + '.jpg'))
             .resize({
                 width: width,
                 height: height,
             })
             .jpeg({ mozjpeg: true })
-            .toFile('./src/assets/rezised/' + input)
+            .toFile(path.join(assetsPath, 'rezised' , input + '_' + height + 'x' + width + '.jpg'))
         return file
     } catch (error) {
         console.log(error)
         const err = Error(error as string)
         return err
     }
-}
-
-export const checkFormat = async (
-    input: string,
-    height: number,
-    width: number
-): Promise<boolean> => {
-    const metadata = await sharp('./src/assets/rezised/' + input).metadata()
-    return metadata.height !== height || metadata.width !== width
 }
 
 export default resizeImage

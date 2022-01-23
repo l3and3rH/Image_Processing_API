@@ -1,7 +1,7 @@
 import resizeImage from '../../helpers/processingHelper'
 
 describe('Resize Functonality Check', () => {
-    const filename = 'test.jpg'
+    const filename = 'test'
     const height = 200
 
     it('check if resizing does not throw error', async () => {
