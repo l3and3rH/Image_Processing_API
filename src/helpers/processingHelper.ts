@@ -8,8 +8,7 @@ const resizeImage = async (
 ): Promise<unknown> => {
     try {
         const assetsPath = path.join(__dirname , '..', '..', 'assets' )
-        console.log('look here now    ' + input)
-        console.log(path.join(assetsPath, 'full' , input))
+
         const file = await sharp(path.join(assetsPath, 'full' , input + '.jpg'))
             .resize({
                 width: width,
@@ -19,7 +18,6 @@ const resizeImage = async (
             .toFile(path.join(assetsPath, 'rezised' , input + '_' + height + 'x' + width + '.jpg'))
         return file
     } catch (error) {
-        console.log(error)
         const err = Error(error as string)
         return err
     }

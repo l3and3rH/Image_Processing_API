@@ -8,7 +8,6 @@ import path from 'path'
 const processing = express.Router()
 
 processing.get('/:fileName', validateInput, (req: express.Request, res: express.Response): void => {
-    console.log(req.params.fileName.includes('.jpg'))
 
     try {
         const height = parseInt(req.query.height + '')
@@ -17,10 +16,10 @@ processing.get('/:fileName', validateInput, (req: express.Request, res: express.
         if(req.params.fileName.includes('.jpg')){
             fileName = req.params.fileName;
             fileName = fileName.slice(0, fileName.length - 4)
-            console.log('da warn .jpg dran' + fileName)
+
         } else {
             fileName = req.params.fileName 
-            console.log('solle kein .jpg enthalten   ' + fileName)
+
         } 
         const imageCheck = async (): Promise<void> => {
             //check if there is a file ind the /full folder that could be resized
@@ -39,8 +38,7 @@ processing.get('/:fileName', validateInput, (req: express.Request, res: express.
 
             // check if file is already resized
             try {
-                console.log('look here')
-                console.log(path.join(assetsPath, 'rezised' ,fileName + '_' + height + 'x' + width + '.jpg'))
+          
                 const check = await fs.access(
                     path.join(assetsPath, 'rezised' ,fileName + '_' + height + 'x' + width + '.jpg'),
                     constants.R_OK
